@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Case Tecnico Alura
 Seja bem-vindo ao teste para desenvolvedor Java Júnior da Alura. Neste
 desafio, simulamos uma parte do nosso domínio para que você possa demonstrar seus conhecimentos. 
@@ -93,3 +94,6 @@ não será considerada como um diferencial.
 - Outros candidatos estão concorrendo à mesma vaga, e códigos muito semelhantes resultarão na anulação do case.
 - Utilize ferramentas de IA, mas tenha cautela com o código gerado automaticamente. Caso avance para a próxima etapa, 
 a entrevista síncrona será baseada no código que você produziu.
+=======
+# AluraFake
+>>>>>>> 58f8a9d3ae7dd00e710fb46a64e4b02c92f9b6d9
