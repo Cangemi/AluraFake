@@ -3,6 +3,8 @@ package br.com.alura.AluraFake.course;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
+
 import org.hibernate.validator.constraints.Length;
 
 public class NewCourseDTO {
@@ -12,15 +14,19 @@ public class NewCourseDTO {
     private String title;
     @NotNull
     @NotBlank
+    @Pattern(regexp = "^[a-zA-Z]+(-[a-zA-Z]+)*$", message = "Código precisa ser textual e pode ser separado por -")
     @Length(min = 4, max = 10)
     private String code;
     @NotNull
     @Length(min = 1, max = 40)
     private int hoursToComplete;
+
     @NotNull
-    @NotBlank
-    @Email
-    private String emailInstructor;
+    private String description;
+    
+    //Retirado emailInstructor e incluido o instructorID pois decidi fazer a tabela Couser relacionada com a tabela User que já contem email
+    @NotNull
+    private Long instructorId;
 
     public NewCourseDTO() {}
 
@@ -48,11 +54,19 @@ public class NewCourseDTO {
         this.hoursToComplete = hoursToComplete;
     }
 
-    public String getEmailInstructor() {
-        return emailInstructor;
+    public String getDescription() {
+        return description;
     }
 
-    public void setEmailInstructor(String emailInstructor) {
-        this.emailInstructor = emailInstructor;
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Long getInstructorId() {
+        return instructorId;
+    }
+
+    public void setInstructorId(Long instructorId) {
+        this.instructorId = instructorId;
     }
 }
