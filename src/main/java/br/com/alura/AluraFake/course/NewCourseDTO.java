@@ -1,11 +1,16 @@
 package br.com.alura.AluraFake.course;
 
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.Length;
+
+import static br.com.alura.AluraFake.course.Status.ACTIVE;
+
 
 public class NewCourseDTO {
 
@@ -18,7 +23,8 @@ public class NewCourseDTO {
     @Length(min = 4, max = 10)
     private String code;
     @NotNull
-    @Length(min = 1, max = 40)
+     @Min(1) 
+    @Max(40) 
     private int hoursToComplete;
 
     @NotNull
@@ -68,5 +74,9 @@ public class NewCourseDTO {
 
     public void setInstructorId(Long instructorId) {
         this.instructorId = instructorId;
+    }
+
+    public Course toModel(){
+        return new Course(title,code,hoursToComplete,instructorId,description, ACTIVE);
     }
 }

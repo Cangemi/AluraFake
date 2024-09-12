@@ -1,0 +1,2 @@
+ALTER TABLE Course
+ADD COLUMN hoursToComplete INT NOT NULL;
