@@ -13,7 +13,7 @@ public class Course {
     private String name;
     private String code;
     private int hoursToComplete;
-    private Long user_id;
+    private Long userId;
     private String description;
     @Enumerated(EnumType.STRING)
     private Status status;
@@ -22,11 +22,11 @@ public class Course {
     @Deprecated
     public Course(){}
 
-    public Course(String name, String code, int hoursToComplete, Long user_id, String description, Status status) {
+    public Course(String name, String code, int hoursToComplete, Long userId, String description, Status status) {
         this.name = name;
         this.code = code;
         this.hoursToComplete = hoursToComplete;
-        this.user_id = user_id;
+        this.userId = userId;
         this.description = description;
         this.status = status;
     }
@@ -40,8 +40,8 @@ public class Course {
     public int getHoursToComplete() {
         return hoursToComplete;
     }
-    public Long getUser_id() {
-        return user_id;
+    public Long userId() {
+        return userId;
     }
     public String getDescription() {
         return description;
@@ -52,8 +52,5 @@ public class Course {
     public LocalDateTime getInactivationDate() {
         return inactivationDate;
     }
-
-    
-
     
 }
