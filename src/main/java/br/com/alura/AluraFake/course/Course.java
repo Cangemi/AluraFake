@@ -17,7 +17,7 @@ public class Course {
     private String description;
     @Enumerated(EnumType.STRING)
     private Status status;
-    private LocalDateTime inactivationDate;
+    private LocalDateTime inactivationDate= null;
 
     @Deprecated
     public Course(){}
@@ -37,10 +37,18 @@ public class Course {
     public String getCode() {
         return code;
     }
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    public void setInactivationDate(LocalDateTime inactivationDate) {
+        this.inactivationDate = inactivationDate;
+    }
+
     public int getHoursToComplete() {
         return hoursToComplete;
     }
-    public Long userId() {
+    public Long getUserId() {
         return userId;
     }
     public String getDescription() {

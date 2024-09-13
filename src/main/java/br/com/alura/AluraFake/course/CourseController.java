@@ -11,6 +11,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import static br.com.alura.AluraFake.user.Role.STUDENT;
+import static br.com.alura.AluraFake.course.Status.INACTIVE;
+
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
+import java.util.Optional;
+
 import br.com.alura.AluraFake.user.UserRepository;
 import br.com.alura.AluraFake.util.ErrorItemDTO;
 
@@ -45,8 +51,26 @@ public class CourseController {
     }
 
     @PostMapping("/course/{code}/inactive")
-    public ResponseEntity createCourse(@PathVariable("code") String courseCode) {
-        // Questão 2 aqui
+    public ResponseEntity inactivateCourse(@PathVariable("code") String courseCode) {
+        Optional<Course> optionalCourse = courseRepository.findByCode(courseCode);
+
+        if(!optionalCourse.isPresent()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+            .body("Curso não encontrado.");
+        }
+
+        Course course = optionalCourse.get();
+
+        if (course.getStatus().equals(INACTIVE)){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body("O curso já está inativo.");            
+        }
+        
+        course.setStatus(INACTIVE);
+        course.setInactivationDate(LocalDateTime.now());
+
+        courseRepository.save(course);
+
         return ResponseEntity.ok().build();
     }
 
