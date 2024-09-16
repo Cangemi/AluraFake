@@ -15,6 +15,7 @@ import br.com.alura.AluraFake.course.CourseRepository;
 import br.com.alura.AluraFake.user.User;
 import br.com.alura.AluraFake.user.UserRepository;
 import br.com.alura.AluraFake.util.ErrorItemDTO;
+import static br.com.alura.AluraFake.course.Status.ACTIVE;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,7 +45,7 @@ public class RegistrationController {
             .body(new ErrorItemDTO("user", "Estudante não encontrado"));
         }
 
-        Course course = courseRepository.findByCode(newRegistration.getCourseCode());
+        Course course = courseRepository.findByCodeAndStatus(newRegistration.getCourseCode(), ACTIVE);
 
         if (course == null) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)

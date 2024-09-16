@@ -8,4 +8,6 @@ public interface CourseRepository extends JpaRepository<Course, Long>{
     boolean existsByCode(String code);
 
     Course findByCode(String courseCode);
+    
+    Course findByCodeAndStatus(String code, Status status);
 }
