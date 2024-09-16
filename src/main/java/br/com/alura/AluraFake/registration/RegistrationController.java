@@ -66,35 +66,23 @@ public class RegistrationController {
     public ResponseEntity<List<RegistrationReportItem>> report() {
         List<RegistrationReportItem> items = new ArrayList<>();
 
-        //Questão 4 aqui
+        List<Object[]> results = registrationRepository.findCoursesWithMostRegistrations();
 
-        //Dados fakes que devem ser rescrevidos
-        items.add(new RegistrationReportItem(
-                "Java para iniciantes",
-                "java",
-                "Caio Bugorin",
-                "caio.bugorin@alura.com.br",
-                10L
-                )
-        );
-
-        items.add(new RegistrationReportItem(
-                        "Spring para iniciantes",
-                        "spring",
-                        "Caio Bugorin",
-                        "caio.bugorin@alura.com.br",
-                        9L
-                )
-        );
-
-        items.add(new RegistrationReportItem(
-                        "Maven para avançados",
-                        "mavem",
-                        "Caio Bugorin",
-                        "caio.bugorin@alura.com.br",
-                        9L
-                )
-        );
+        for (Object[] result : results) {
+            String courseName = (String) result[0];
+            String courseCode = (String) result[1];
+            String instructorName = (String) result[2];
+            String instructorEmail = (String) result[3];
+            Long registrationCount = ((Number) result[4]).longValue();
+    
+            items.add(new RegistrationReportItem(
+                    courseName,
+                    courseCode,
+                    instructorName,
+                    instructorEmail,
+                    registrationCount
+            ));
+        }
 
         return ResponseEntity.ok(items);
     }
