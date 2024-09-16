@@ -14,9 +14,7 @@ import static br.com.alura.AluraFake.user.Role.STUDENT;
 import static br.com.alura.AluraFake.course.Status.INACTIVE;
 
 import java.time.LocalDateTime;
-import java.time.ZoneOffset;
-import java.util.Optional;
-
+import br.com.alura.AluraFake.user.User;
 import br.com.alura.AluraFake.user.UserRepository;
 import br.com.alura.AluraFake.util.ErrorItemDTO;
 
@@ -40,26 +38,26 @@ public class CourseController {
                     .body(new ErrorItemDTO("code", "Já existe um curso cadastrado com este código"));
         }
 
-        if(userRepository.existsByIdAndRole(newCourse.getInstructorId(),STUDENT)) {
+        if(userRepository.existsByEmailAndRole(newCourse.getEmailInstructor(),STUDENT)) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                    .body(new ErrorItemDTO("user_id", "Usuário não é um instrutor"));
+                    .body(new ErrorItemDTO("userId", "Usuário não é um instrutor"));
         }
-        
-        Course course = newCourse.toModel();
+
+        User user = userRepository.findByEmail(newCourse.getEmailInstructor());
+
+        Course course = newCourse.toModel(user);
         courseRepository.save(course);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @PostMapping("/course/{code}/inactive")
     public ResponseEntity inactivateCourse(@PathVariable("code") String courseCode) {
-        Optional<Course> optionalCourse = courseRepository.findByCode(courseCode);
+        Course course = courseRepository.findByCode(courseCode);
 
-        if(!optionalCourse.isPresent()){
+        if(course == null){
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
             .body("Curso não encontrado.");
         }
-
-        Course course = optionalCourse.get();
 
         if (course.getStatus().equals(INACTIVE)){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)

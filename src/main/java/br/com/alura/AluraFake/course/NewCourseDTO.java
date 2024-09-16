@@ -9,7 +9,10 @@ import jakarta.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.Length;
 
+import br.com.alura.AluraFake.user.User;
+
 import static br.com.alura.AluraFake.course.Status.ACTIVE;
+
 
 
 public class NewCourseDTO {
@@ -32,7 +35,9 @@ public class NewCourseDTO {
     
     //Retirado emailInstructor e incluido o instructorID pois decidi fazer a tabela Couser relacionada com a tabela User que já contem email
     @NotNull
-    private Long instructorId;
+    @NotBlank
+    @Email
+    private String emailInstructor;
 
     public NewCourseDTO() {}
 
@@ -68,15 +73,15 @@ public class NewCourseDTO {
         this.description = description;
     }
 
-    public Long getInstructorId() {
-        return instructorId;
+    public String getEmailInstructor() {
+        return emailInstructor;
     }
 
-    public void setInstructorId(Long instructorId) {
-        this.instructorId = instructorId;
+    public void setEmailInstructor(String emailInstructor) {
+        this.emailInstructor = emailInstructor;
     }
 
-    public Course toModel(){
-        return new Course(title,code,hoursToComplete,instructorId,description, ACTIVE);
+    public Course toModel(User user){
+        return new Course(title,code,hoursToComplete,user,description, ACTIVE);
     }
 }

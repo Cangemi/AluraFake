@@ -2,6 +2,7 @@ package br.com.alura.AluraFake.course;
 
 import java.time.LocalDateTime;
 
+import br.com.alura.AluraFake.user.User;
 import jakarta.persistence.*;
 
 @Entity
@@ -13,20 +14,23 @@ public class Course {
     private String name;
     private String code;
     private int hoursToComplete;
-    private Long userId;
+    @ManyToOne
+    @JoinColumn(name = "userId", nullable = false)
+    private User user;
     private String description;
     @Enumerated(EnumType.STRING)
     private Status status;
+
     private LocalDateTime inactivationDate= null;
 
     @Deprecated
     public Course(){}
 
-    public Course(String name, String code, int hoursToComplete, Long userId, String description, Status status) {
+    public Course(String name, String code, int hoursToComplete, User user, String description, Status status) {
         this.name = name;
         this.code = code;
         this.hoursToComplete = hoursToComplete;
-        this.userId = userId;
+        this.user = user;
         this.description = description;
         this.status = status;
     }
@@ -48,8 +52,8 @@ public class Course {
     public int getHoursToComplete() {
         return hoursToComplete;
     }
-    public Long getUserId() {
-        return userId;
+    public User getUserId() {
+        return user;
     }
     public String getDescription() {
         return description;
