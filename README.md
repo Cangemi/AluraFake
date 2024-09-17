@@ -2,7 +2,7 @@
 
 ## Descrição
 
-O AluraFake é uma aplicação web desenvolvida com Spring Boot que oferece funcionalidades para gerenciar cursos, usuários e matrículas. A aplicação permite criar e gerenciar cursos, registrar novos estudantes, listar todos os usuários e gerar relatórios sobre matrículas.
+O AluraFake é uma aplicação web desenvolvida com Spring Boot como parte de um teste para um processo seletivo. A aplicação oferece funcionalidades para gerenciar cursos, usuários e matrículas, permitindo criar e gerenciar cursos, registrar novos estudantes, listar todos os usuários e gerar relatórios sobre matrículas.
 
 ## Tecnologias
 
@@ -94,7 +94,7 @@ Configure as variáveis de ambiente para o banco de dados e outros serviços no 
 
 1. Clone o repositório:
    ```bash
-   git clone https://github.com/Cangemi/AluraFake.git
+    git clone https://github.com/Cangemi/AluraFake.git
    ```
 2. Navegue até o diretório do projeto:
   ```bash
