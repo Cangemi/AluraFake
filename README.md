@@ -7,7 +7,7 @@ O AluraFake é uma aplicação web desenvolvida com Spring Boot que oferece func
 ## Tecnologias
 
 - **Spring Boot**: v3.3.3
-- **Java**: 17 ou superior
+- **Java**: 21
 - **Jakarta EE**: Para validação e mapeamento de dados
 
 ## Estrutura do Projeto
