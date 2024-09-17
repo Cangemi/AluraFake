@@ -19,7 +19,14 @@ public class NewStudentUserDTO {
     @Length(min = 8, max = 16)
     private String password;
 
-    public NewStudentUserDTO() {}
+    public NewStudentUserDTO(){}
+
+    public NewStudentUserDTO(@NotNull @Length(min = 3, max = 50) String name, @NotBlank @Email String email,
+            @NotNull @Length(min = 8, max = 16) String password) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+    }
 
     public String getName() {
         return name;

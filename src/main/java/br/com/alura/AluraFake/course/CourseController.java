@@ -56,12 +56,13 @@ public class CourseController {
 
         if(course == null){
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
-            .body("Curso não encontrado.");
+            .body(new ErrorItemDTO("course", "Curso não encontrado"));
+
         }
 
         if (course.getStatus().equals(INACTIVE)){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                .body("O curso já está inativo.");            
+            .body(new ErrorItemDTO("status", "O curso já está inativo"));        
         }
         
         course.setStatus(INACTIVE);
