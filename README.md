@@ -95,7 +95,7 @@ Configure as variáveis de ambiente para o banco de dados e outros serviços no 
 1. Clone o repositório:
    ```bash
    git clone https://github.com/Cangemi/AluraFake.git
-  ```
+   ```
 2. Navegue até o diretório do projeto:
   ```bash
    cd alura-fake
