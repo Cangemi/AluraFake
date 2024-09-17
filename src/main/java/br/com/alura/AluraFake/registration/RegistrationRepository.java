@@ -17,5 +17,5 @@ public interface RegistrationRepository extends JpaRepository<Registration, Long
     "JOIN User u ON c.userId = u.id " +
     "GROUP BY c.id, u.id " +
     "ORDER BY registrationCount DESC", nativeQuery = true)
-List<Object[]> findCoursesWithMostRegistrations();
+    List<Object[]> findCoursesWithMostRegistrations();
 }
